@@ -98,7 +98,7 @@ jobs:
         uses: cloudnode-pro/modrinth-publish@v2
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
-          project: su-craftable-name-tag
+          project: ${{ secrets.PROJECT_ID }}
           loaders: fabric
           files: build/libs/su-craftable-name-tag-${{ github.ref_name }}.jar
           version: ${{ github.ref_name }}
