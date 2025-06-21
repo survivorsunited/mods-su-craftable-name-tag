@@ -91,7 +91,7 @@ jobs:
           token: ${{ secrets.MODRINTH_TOKEN }}
           project: su-craftable-name-tag
           loaders: fabric
-          files: build/libs/su-craftable-name-tag-*.jar
+          files: build/libs/su-craftable-name-tag-${{ github.ref_name }}.jar
           version: ${{ github.ref_name }}
           changelog: ${{ steps.changelog.outputs.changelog }}
           game-versions: |-
