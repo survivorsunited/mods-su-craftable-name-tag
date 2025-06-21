@@ -46,9 +46,8 @@ Yes, this mod should be compatible with most other Fabric mods since it only add
 ### What materials do I need to craft a name tag?
 
 You need:
-- 4x String
-- 4x Paper
-- 1x Iron Ingot
+- 1x String
+- 2x Iron Ingots
 
 ### Can I rename the name tag?
 

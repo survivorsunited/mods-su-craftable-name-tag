@@ -79,7 +79,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'wikiSidebar',
           position: 'left',
           label: 'Wiki',
         },

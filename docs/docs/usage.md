@@ -12,18 +12,17 @@ Learn how to use SU Craftable Name Tag to create and use name tags in your Minec
 
 To craft a name tag, you'll need:
 
-- **4x String** - Obtained from spiders, cobwebs, or breaking wool
-- **4x Paper** - Crafted from 3 sugar cane in a horizontal line
-- **1x Iron Ingot** - Smelted from iron ore or obtained from iron golems
+- **1x String** - Obtained from spiders, cobwebs, or breaking wool
+- **2x Iron Ingots** - Smelted from iron ore or obtained from iron golems
 
 ### Crafting Recipe
 
 Arrange the materials in a crafting table as follows:
 
 ```
-[String] [Paper] [String]
-[Paper] [Iron Ingot] [Paper]
-[String] [Paper] [String]
+[String] [Empty] [Empty]
+[Iron Ingot] [Iron Ingot] [Empty]
+[Empty] [Empty] [Empty]
 ```
 
 This will yield **1 name tag**.
@@ -31,7 +30,6 @@ This will yield **1 name tag**.
 ### Crafting Tips
 
 - **String farming**: Set up a spider spawner farm for efficient string collection
-- **Paper production**: Create a sugar cane farm near water for renewable paper
 - **Iron mining**: Use an iron farm or mine in caves for iron ingots
 
 ## Using Name Tags
