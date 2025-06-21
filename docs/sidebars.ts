@@ -30,6 +30,16 @@ const sidebars: SidebarsConfig = {
       id: 'usage',
       label: 'Usage Guide',
     },
+    {
+      type: 'doc',
+      id: 'faq',
+      label: 'FAQ',
+    },
+    {
+      type: 'doc',
+      id: 'technical',
+      label: 'Technical',
+    },
   ],
 
   // But you can create a sidebar manually

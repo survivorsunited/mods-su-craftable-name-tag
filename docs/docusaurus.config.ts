@@ -47,13 +47,6 @@ const config: Config = {
           editUrl:
             'https://github.com/survivorsunited/mods-su-craftable-name-tag/tree/main/docs/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/survivorsunited/mods-su-craftable-name-tag/tree/main/docs/',
-        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -88,9 +81,8 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Wiki',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/survivorsunited/mods-su-craftable-name-tag',
           label: 'GitHub',
@@ -107,14 +99,18 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Documentation',
           items: [
+            {
+              label: 'Introduction',
+              to: '/docs/intro',
+            },
             {
               label: 'Installation',
               to: '/docs/installation',
             },
             {
-              label: 'Usage',
+              label: 'Usage Guide',
               to: '/docs/usage',
             },
           ],
@@ -129,15 +125,6 @@ const config: Config = {
             {
               label: 'Modrinth',
               href: 'https://modrinth.com/mod/su-craftable-name-tag',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
             },
           ],
         },
