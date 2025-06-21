@@ -28,13 +28,27 @@ jobs:
         with:
           name: Artifacts
           path: build/libs/
-      - uses: cloudnode-pro/modrinth-publish@v2
+      - name: Publish to Modrinth (only on releases)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: cloudnode-pro/modrinth-publish@v2
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
           project: ${{ env.PROJECT_ID }}
           loaders: fabric
-          files: build/libs/su-craftable-name-tag-${{ github.event.release.tag_name }}.jar
-          version: ${{ github.event.release.tag_name }}
-          changelog: ${{ github.event.release.body }}
+          files: build/libs/su-craftable-name-tag-*.jar
+          version: ${{ github.ref_name }}
+          changelog: |
+            ## SU Craftable Name Tag Mod ${{ github.ref_name }}
+            
+            ### What's New
+            - Initial release
+            - Adds craftable name tags using string, paper, and iron ingots
+            - Compatible with Minecraft 1.21.6 and Fabric
+            
+            ### Recipe
+            Craft name tags using:
+            - 3 String
+            - 1 Paper  
+            - 2 Iron Ingot
           game-versions: |-
             1.21.x
