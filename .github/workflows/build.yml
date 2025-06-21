@@ -57,10 +57,11 @@ jobs:
       - name: Generate changelog
         id: changelog
         run: |
+          CHANGELOG="## Changes in ${{ github.ref_name }}"
+          CHANGELOG="$CHANGELOG"$'\n'
+          CHANGELOG="$CHANGELOG$(git log --pretty=format:'- %s' $(git describe --tags --abbrev=0 HEAD^)..HEAD)"
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "## Changes in ${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          echo "" >> $GITHUB_OUTPUT
-          git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           
       - name: Create Release
@@ -89,10 +90,11 @@ jobs:
       - name: Generate changelog for publishing
         id: changelog
         run: |
+          CHANGELOG="## Changes in ${{ github.ref_name }}"
+          CHANGELOG="$CHANGELOG"$'\n'
+          CHANGELOG="$CHANGELOG$(git log --pretty=format:'- %s' $(git describe --tags --abbrev=0 HEAD^)..HEAD)"
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "## Changes in ${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          echo "" >> $GITHUB_OUTPUT
-          git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           
       - name: Publish to Modrinth
