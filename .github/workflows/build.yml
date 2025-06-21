@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.MODRINTH_TOKEN }}
           project: ${{ env.PROJECT_ID }}
           loaders: fabric
-          files: build/libs/su-craftable-name-tag-${{ env.VERSION }}.jar
+          files: build/libs/su-craftable-name-tag-${{ github.event.release.tag_name }}.jar
           version: ${{ github.event.release.tag_name }}
           changelog: ${{ github.event.release.body }}
           game-versions: |-
