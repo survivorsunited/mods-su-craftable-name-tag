@@ -17,13 +17,9 @@ To craft a name tag, you'll need:
 
 ### Crafting Recipe
 
-Arrange the materials in a crafting table as follows:
+Arrange the materials in a crafting table as shown below:
 
-```
-[Empty] [Empty] [String]
-[Empty] [Iron Ingot] [Empty]
-[Iron Ingot] [Empty] [Empty]
-```
+![Name Tag Recipe](recipe.png)
 
 This will yield **1 name tag**.
 
