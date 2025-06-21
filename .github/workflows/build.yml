@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
       - name: setup jdk
@@ -28,6 +30,37 @@ jobs:
         with:
           name: Artifacts
           path: build/libs/
+      - name: Generate changelog
+        if: startsWith(github.ref, 'refs/tags/')
+        id: changelog
+        run: |
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "## Changes in ${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/libs/su-craftable-name-tag-*.jar
+          asset_name: su-craftable-name-tag-${{ github.ref_name }}.jar
+          asset_content_type: application/java-archive
       - name: Publish to Modrinth (only on releases)
         if: startsWith(github.ref, 'refs/tags/')
         uses: cloudnode-pro/modrinth-publish@v2
@@ -37,18 +70,6 @@ jobs:
           loaders: fabric
           files: build/libs/su-craftable-name-tag-*.jar
           version: ${{ github.ref_name }}
-          changelog: |
-            ## SU Craftable Name Tag Mod ${{ github.ref_name }}
-            
-            ### What's New
-            - Initial release
-            - Adds craftable name tags using string, paper, and iron ingots
-            - Compatible with Minecraft 1.21.6 and Fabric
-            
-            ### Recipe
-            Craft name tags using:
-            - 3 String
-            - 1 Paper  
-            - 2 Iron Ingot
+          changelog: ${{ steps.changelog.outputs.changelog }}
           game-versions: |-
             1.21.x
