@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "su-craftable-name-tag",
+	"version": "${version}",
+	"name": "SU Craftable Name Tag",
+	"description": "Adds the ability to craft name tags using string and iron ingots in a crafting table.",
+	"authors": [
+		"wildone"
+	],
+	"contact": {
+		"homepage": "https://survivorsunited.org/",
+		"sources": "https://github.com/survivorsunited/mods-su-craftable-name-tag"
+	},
+	"license": "Apache-2.0",
+	"icon": "assets/su-craftable-name-tag/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.survivorsunited.mods.craftablenametag.SUCraftableNameTag"
+		],
+        "client": [
+            "org.survivorsunited.mods.craftablenametag.SUCraftableNameTagClient"
+        ]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

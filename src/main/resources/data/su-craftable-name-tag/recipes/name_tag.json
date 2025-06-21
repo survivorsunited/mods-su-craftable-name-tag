@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  S",
+    " I ",
+    "I  "
+  ],
+  "key": {
+    "S": "minecraft:string",
+    "I": "minecraft:iron_ingot"
+  },
+  "result": {
+    "item": "minecraft:name_tag",
+    "count": 1
+  },
+  "show_notification": true
+} 
