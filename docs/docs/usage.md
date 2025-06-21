@@ -20,9 +20,9 @@ To craft a name tag, you'll need:
 Arrange the materials in a crafting table as follows:
 
 ```
-[String] [Empty] [Empty]
-[Iron Ingot] [Iron Ingot] [Empty]
-[Empty] [Empty] [Empty]
+[Empty] [Empty] [String]
+[Empty] [Iron Ingot] [Empty]
+[Iron Ingot] [Empty] [Empty]
 ```
 
 This will yield **1 name tag**.

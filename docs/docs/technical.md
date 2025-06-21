@@ -35,9 +35,9 @@ The name tag recipe is defined in JSON format:
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "S  ",
-    "II ",
-    "   "
+    "  S",
+    " I ",
+    "I  "
   ],
   "key": {
     "S": {
@@ -57,10 +57,10 @@ The name tag recipe is defined in JSON format:
 ### Recipe Pattern
 
 The recipe uses a 3x3 grid pattern:
-- **S** = String (1 total)
-- **I** = Iron Ingot (2 total)
+- **S** = String (1 total) - positioned in top right
+- **I** = Iron Ingot (2 total) - positioned in middle and bottom left
 
-This creates a simple pattern with the string in the top-left and two iron ingots in the middle row.
+This creates a diagonal pattern with the string in the top-right corner and iron ingots in the middle and bottom-left positions.
 
 ## Mod Loading
 

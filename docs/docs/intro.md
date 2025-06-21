@@ -29,9 +29,9 @@ SU Craftable Name Tag is a simple, lightweight Fabric mod that adds a crafting r
 To craft a name tag, arrange the materials in a crafting table as follows:
 
 ```
-[String] [Empty] [Empty]
-[Iron Ingot] [Iron Ingot] [Empty]
-[Empty] [Empty] [Empty]
+[Empty] [Empty] [String]
+[Empty] [Iron Ingot] [Empty]
+[Iron Ingot] [Empty] [Empty]
 ```
 
 This recipe yields **1 name tag** and uses:
