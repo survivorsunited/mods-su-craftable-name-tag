@@ -10,28 +10,49 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - name: checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: validate gradle wrapper
-        uses: gradle/actions/wrapper-validation@v4
-      - name: setup jdk
+          
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
-      - name: make gradle wrapper executable
+          
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v4
+        
+      - name: Make Gradle executable
         run: chmod +x ./gradlew
-      - name: build
+        
+      - name: Build project
         run: ./gradlew build
-      - name: capture build artifacts
+        
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
           path: build/libs/
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: Artifacts
+          path: build/libs/
+          
       - name: Generate changelog
-        if: startsWith(github.ref, 'refs/tags/')
         id: changelog
         run: |
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
@@ -39,8 +60,8 @@ jobs:
           echo "" >> $GITHUB_OUTPUT
           git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+          
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -51,8 +72,8 @@ jobs:
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
+          
       - name: Upload Release Asset
-        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,8 +82,28 @@ jobs:
           asset_path: build/libs/su-craftable-name-tag-*.jar
           asset_name: su-craftable-name-tag-${{ github.ref_name }}.jar
           asset_content_type: application/java-archive
-      - name: Publish to Modrinth (only on releases)
-        if: startsWith(github.ref, 'refs/tags/')
+
+  publish:
+    needs: [build, release]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: Artifacts
+          path: build/libs/
+          
+      - name: Generate changelog for publishing
+        id: changelog
+        run: |
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "## Changes in ${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+      - name: Publish to Modrinth
         uses: cloudnode-pro/modrinth-publish@v2
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
