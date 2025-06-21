@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'SU Craftable Name Tag',
   tagline: 'A Minecraft Fabric mod that adds a crafting recipe for name tags',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/icon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -74,7 +74,7 @@ const config: Config = {
       title: 'SU Craftable Name Tag',
       logo: {
         alt: 'SU Craftable Name Tag Logo',
-        src: 'img/logo.svg',
+        src: 'img/icon.png',
       },
       items: [
         {
