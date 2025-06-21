@@ -19,7 +19,7 @@ To craft a name tag, you'll need:
 
 Arrange the materials in a crafting table as shown below:
 
-![Name Tag Recipe](recipe.png)
+![Name Tag Recipe](/img/recipe.png)
 
 This will yield **1 name tag**.
 
