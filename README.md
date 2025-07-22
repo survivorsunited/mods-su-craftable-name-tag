@@ -20,6 +20,7 @@ To craft a name tag, you need:
 - **2 Iron Ingot** (I)
 
 **Crafting Pattern:**
+|---|---|---|
 |   |   | S |
 |   | I |   |
 | I |   |   |
