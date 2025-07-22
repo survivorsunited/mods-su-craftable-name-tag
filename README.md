@@ -16,16 +16,13 @@ This mod makes name tags craftable by adding a new shaped crafting recipe. Playe
 ## Recipe
 
 To craft a name tag, you need:
-- **3 String** (S)
-- **1 Paper** (P) 
+- **1 String** (S)
 - **2 Iron Ingot** (I)
 
 **Crafting Pattern:**
-```
- SS
-PIS
-IP 
-```
+|   |   | S |
+|   | I |   |
+| I |   |   |
 
 The recipe is crafted in a **Crafting Table**.
 
